@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OptimumTechModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="C_SYS_ItemInformation">
+    <Key>
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemName" Type="varchar" MaxLength="60" />
+    <Property Name="ItemCode" Type="varchar" MaxLength="20" />
+    <Property Name="RelatedCompany" Type="varchar" MaxLength="60" />
+    <Property Name="ItemSequence" Type="int" />
+    <Property Name="ItemCurrency" Type="varchar" MaxLength="5" />
+    <Property Name="CurrencyRate" Type="varchar" MaxLength="40" />
+    <Property Name="ItemType" Type="varchar" MaxLength="40" />
+    <Property Name="ReportLot" Type="varchar" MaxLength="60" />
+    <Property Name="ApportionProcedure" Type="varchar" MaxLength="20" />
+    <Property Name="CopyFormula" Type="varchar" MaxLength="60" />
+    <Property Name="RegulatoryArea" Type="bit" />
+    <Property Name="GrossProfitAndLoss" Type="bit" />
+    <Property Name="CutCreditAdvice" Type="bit" />
+    <Property Name="ExpeditionaryRevenueCostItem" Type="bit" />
+    <Property Name="InternalAbstractAccount" Type="bit" />
+    <Property Name="InvoiceItemDisclosures" Type="varchar" MaxLength="200" />
+    <Property Name="RevenueItem" Type="bit" />
+    <Property Name="CostItem" Type="bit" />
+    <Property Name="RevenueAccount" Type="varchar" MaxLength="20" />
+    <Property Name="CostAccount" Type="varchar" MaxLength="20" />
+    <Property Name="ExpenceCenterAccount" Type="varchar" MaxLength="20" />
+    <Property Name="RevenueVatAccount" Type="varchar" MaxLength="20" />
+    <Property Name="CostVatAccount" Type="varchar" MaxLength="20" />
+    <Property Name="RevenueRateOfVat" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="CostRateOfVat" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Modules" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="OptimumTechModelStoreContainer">
+    <EntitySet Name="C_SYS_ItemInformation" EntityType="Self.C_SYS_ItemInformation" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

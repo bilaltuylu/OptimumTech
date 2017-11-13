@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+
+
+
+
+                                           
+
+                                  
+                                       
+
+    @*      DATATABLE       *@
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/plugins/dataTables")
+
+    <script type="text/javascript"> 
+
+        var id = 1;
+        var dataTableVehicle;
+
+        $(document).ready(function () {
+            VehicleDataTable();
+        });
+
+
+        function VehicleDataTable() {       
+
+            var colms = [
+                {
+                    "mRender": function (data, type, row) {
+                        return '<button data-toggle="tooltip" id="btnEditPerson" data-placement="top" title="Düzenle" onclick="EditVehicle(' + row.VehicleCardId + ');"  class="btn btn-info btn-xs " type="button"><i class="fa fa-pencil-square-o"></i></button> <button data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-xs" type="button" title="Sil" onclick="DeleteVehicle(' + row.VehicleCardId + ');"><i class="fa fa-trash-o"></i></button>';
+                    },
+
+                },
+                { data: "ItemName", "mDataProp": "ItemName", "title": "Kalem Adı", value: "ItemName" },
+                { data: "ItemCode", "mDataProp": "ItemCode", "title": "Kalem Kodu", value: "ItemCode" },
+                { data: "RelatedCompany", "mDataProp": "RelatedCompany", "title": "İlgili Firma", value: "RelatedCompany" },
+                { data: "ItemSequence", "mDataProp": "ItemSequence", "title": "Kalem Sırası", value: "ItemSequence" },
+                { data: "ItemCurrency", "mDataProp": "ItemCurrency", "title": "Kalem Dövizi", value: "ItemCurrency" },
+                { data: "CurrencyRate", "mDataProp": "CurrencyRate", "title": "Döviz Kur Bilgisi", value: "CurrencyRate", },
+                { data: "ItemType", "mDataProp": "ItemType", "title": "Kalem Türü ", value: "ItemType" },
+                { data: "ReportLot", "mDataProp": "ReportLot", "title": "Rapor Grubu", value: "ReportLot" },
+
+
+                { data: "ApportionProcedure", "mDataProp": "ApportionProcedure", "title": "Paylaştırma Kriteri", value: "ApportionProcedure", },
+                { data: "CopyFormula", "mDataProp": "CopyFormula", "title": "Kopyalama Formülü", value: "CopyFormula" },
+                { data: "RegulatoryArea", "mDataProp": "RegulatoryArea", "title": "Zorunlu Seçeneği", value: "RegulatoryArea" },
+                { data: "GrossProfitAndLoss", "mDataProp": "GrossProfitAndLoss", "title": "Brüt Kar/zarar", value: "GrossProfitAndLoss", },
+                { data: "CutCreditAdvice", "mDataProp": "CutCreditAdvice", "title": "İndirim/Alacak Dekontu", value: "CutCreditAdvice" },
+                { data: "ExpeditionaryRevenueCostItem", "mDataProp": "ExpeditionaryRevenueCostItem", "title": "Sefer İlişkin Gelir/Gider", value: "ExpeditionaryRevenueCostItem" },
+                { data: "InternalAbstractAccount", "mDataProp": "InternalAbstractAccount", "title": "İç Dekont", value: "InternalAbstractAccount", },
+                { data: "InvoiceItemDisclosures", "mDataProp": "InvoiceItemDisclosures", "title": "Fatura Kalem Açıklamaları", value: "InvoiceItemDisclosures" },
+
+
+                { data: "RevenueItem", "mDataProp": "RevenueItem", "title": "Gelir Kalemi ", value: "RevenueItem" },
+                { data: "CostItem", "mDataProp": "CostItem", "title": "Gider Kalemi", value: "CostItem" },
+                { data: "RevenueAccount", "mDataProp": "RevenueAccount", "title": "Gelir Muhasebe Hesabı", value: "RevenueAccount" },
+                { data: "CostAccount", "mDataProp": "CostAccount", "title": "Gider Muhasebe Hesabı", value: "CostAccount" },
+                { data: "ExpenceCenterAccount", "mDataProp": "ExpenceCenterAccount", "title": "Gelir Masraf Yeri hesabı", value: "ExpenceCenterAccount" },
+                { data: "RevenueVatAccount", "mDataProp": "RevenueVatAccount", "title": "Gelir KDV Hesabı", value: "RevenueVatAccount" },
+                { data: "CostVatAccount", "mDataProp": "CostVatAccount", "title": "Gider KDV Hesabı", value: "CostVatAccount" },
+                { data: "RevenueRateOfVat", "mDataProp": "RevenueRateOfVat", "title": "Gelir KDV Oranı", value: "RevenueRateOfVat" },
+                { data: "CostRateOfVat", "mDataProp": "CostRateOfVat", "title": "Gider KDV Oranı", value: "CostRateOfVat" },
+                { data: "Modules", "mDataProp": "Modules", "title": "Kullanılacak Uygulamalar", value: "Modules" }]
+            // YÜKLENİYOR
+            dataTableVehicle = $('#dataTableVehicle').DataTable({
+                select: true,
+                scrollX: false,
+                scrollCollapse: false,
+                scrollY: '50vh',
+                "paging": false,
+                "ordering": false,
+                "info": false,
+
+                "bLengthChange": false,
+                "bFilter": true,
+                "bSort": true,
+                "sAjaxDataProp": "aaData",
+                "bJQueryUI": true,
+                "bProcessing": true,
+                "bServerSide": true,
+                //pageLength: 5,
+                dom: '<"html5buttons"B>lTfgitp',
+                language: {
+                    "url": "/locales/DataTable.tr.json"
+                },
+                ajax: {
+                    type: "POST",
+                    url: "/api/VehicleCardApi/GetPagerAll/" + id,
+                    "datatype": "json",
+                    beforeSend: function () {
+                        $('.ibox').children('#gclist').toggleClass('sk-loading');
+                    },
+                    complete: function () {
+                        $('.ibox').children('#gclist').toggleClass('sk-loading');
+                    }
+                },
+                buttons: [
+                    {
+                        text: '<i class="fa fa-plus"></i>&nbsp;&nbsp;Yeni Kayıt', titleAttr: 'Ekle',
+                        action: function (e, dt, node, config) {
+                            openNewRecord();
+                        }
+                    },
+                    {
+                        text: '<i class="fa fa-refresh"></i>', titleAttr: 'Yenile',
+                        action: function (e, dt, node, config) {
+                            dataTableVehicle.ajax.reload();
+                        }
+                    },
+                    { extend: 'copy', text: '<i class="fa fa-files-o"></i>', titleAttr: 'Kopyala' },
+                    { extend: 'csv', text: '<i class="fa fa-file-text-o"></i>', titleAttr: 'CSV' },
+                    { extend: 'excel', title: 'Firma Listesi', text: '<i class="fa fa-file-excel-o"></i>', titleAttr: "Excel'e Aktar" },
+                    { extend: 'pdf', title: 'Firma Listesi', text: '<i class="fa fa-file-pdf-o"></i>', 'sPdfOrientation': 'landscape', titleAttr: "PDF'e Aktar" },
+                    {
+                        extend: 'print', text: '<i class="fa fa-print"></i>', titleAttr: 'Yazdır',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ],
+                "aoColumns": colms,
+                "aoColumnDefs": colms
+
+            });
+        }
+    </script>
+
+

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OptimumTechModelStoreContainer" CdmEntityContainer="OptimumTechEntities1">
+    <EntitySetMapping Name="C_SYS_ItemInformation">
+      <EntityTypeMapping TypeName="OptimumTechModel.C_SYS_ItemInformation">
+        <MappingFragment StoreEntitySet="C_SYS_ItemInformation">
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="RelatedCompany" ColumnName="RelatedCompany" />
+          <ScalarProperty Name="ItemSequence" ColumnName="ItemSequence" />
+          <ScalarProperty Name="ItemCurrency" ColumnName="ItemCurrency" />
+          <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+          <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+          <ScalarProperty Name="ReportLot" ColumnName="ReportLot" />
+          <ScalarProperty Name="ApportionProcedure" ColumnName="ApportionProcedure" />
+          <ScalarProperty Name="CopyFormula" ColumnName="CopyFormula" />
+          <ScalarProperty Name="RegulatoryArea" ColumnName="RegulatoryArea" />
+          <ScalarProperty Name="GrossProfitAndLoss" ColumnName="GrossProfitAndLoss" />
+          <ScalarProperty Name="CutCreditAdvice" ColumnName="CutCreditAdvice" />
+          <ScalarProperty Name="ExpeditionaryRevenueCostItem" ColumnName="ExpeditionaryRevenueCostItem" />
+          <ScalarProperty Name="InternalAbstractAccount" ColumnName="InternalAbstractAccount" />
+          <ScalarProperty Name="InvoiceItemDisclosures" ColumnName="InvoiceItemDisclosures" />
+          <ScalarProperty Name="RevenueItem" ColumnName="RevenueItem" />
+          <ScalarProperty Name="CostItem" ColumnName="CostItem" />
+          <ScalarProperty Name="RevenueAccount" ColumnName="RevenueAccount" />
+          <ScalarProperty Name="CostAccount" ColumnName="CostAccount" />
+          <ScalarProperty Name="ExpenceCenterAccount" ColumnName="ExpenceCenterAccount" />
+          <ScalarProperty Name="RevenueVatAccount" ColumnName="RevenueVatAccount" />
+          <ScalarProperty Name="CostVatAccount" ColumnName="CostVatAccount" />
+          <ScalarProperty Name="RevenueRateOfVat" ColumnName="RevenueRateOfVat" />
+          <ScalarProperty Name="CostRateOfVat" ColumnName="CostRateOfVat" />
+          <ScalarProperty Name="Modules" ColumnName="Modules" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

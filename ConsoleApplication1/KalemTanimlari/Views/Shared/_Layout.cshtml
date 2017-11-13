@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Optimumtech Lojistik | @ViewBag.Title</title>
+  
+    <!-- Eklentileri css dosyası için çoğunlukla yerel stiller ekleyin -->
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+
+
+    <!-- Birincil INSPINA tarzı -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+    @Styles.Render("~/select2Styles")
+    @Styles.Render("~/plugins/datePickerStyles")
+
+    @Styles.Render("~/plugins/laddaStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+    @Styles.Render("~/Content/plugins/dropzone/dropZoneStyles")
+    @Styles.Render("~/Content/plugins/dropzone/dropZoneStylesbasic")
+
+    @*@Styles.Render("~/Content/jqueryuiStyles")*@
+
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+       
+
+
+</head>
+<body class="fixed-sidebar fixed-nav skin-0">
+
+    <!-- Wrapper -->
+    <!-- PageClass, eylem temelli özel görünüm için özel stil belirleme becerisi kazandırır. -->
+    <div id="wrapper">
+
+        <!-- Navigasyon -->
+        @Html.Partial("_Navigation")
+
+        <!-- Sayfa sarmalayıcı -->
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+
+            <!-- Üstteki Navbar -->
+            @Html.Partial("_TopNavbar")
+
+            <!-- Ana görünüm  -->
+            @RenderBody()
+
+            <!-- Altbilgi -->
+            @Html.Partial("_Footer")
+
+        </div>
+     
+
+    </div>
+    <!-- Wrapper bitti-->
+    <!-- Ana betiklerin bölümü oluşturma -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/plugins/slimScroll")
+
+    @Scripts.Render("~/bundles/inspinia")
+
+
+    @Scripts.Render("~/Scripts/handlebars")
+    @Scripts.Render("~/Scripts/select2")
+    @Scripts.Render("~/bundles/autonumeric")
+    @Scripts.Render("~/plugins/datePicker")
+    <!-- Skin yapılandırma komut dosyası -->
+    @Scripts.Render("~/bundles/skinConfig")
+
+    <!-- Yerel komut dosyaları için işleyici -->
+    @RenderSection("scripts", required: false)
+
+ 
+
+ 
+    <script type="text/javascript">
+        // Select2 Tema tanımlama
+
+        $.fn.select2.defaults.set("theme", "classic");
+
+        $(document).ready(function () {
+
+
+
+            // Para giriş maskesinitanımla
+            //$.extend($.fn.autoNumeric.defaults, {
+            //    aSep: '.',
+            //    aDec: ','
+            //});
+            //$('.currency').autoNumeric('init');
+            //$('.percent').autoNumeric('init');
+
+
+
+            // Combobox arama çubuğu olmadan tanımla
+            $('.selectNoSearch').select2({
+                minimumResultsForSearch: Infinity,
+                width: '100%',
+
+            });
+
+            // Combobox tanımla
+            $('.chosen-select').select2({
+                width: '100%'
+
+            });
+
+            // Combobox tanımla
+            $('.chosen-select-aw').select2({
+                width: '100%',
+                dropdownAutoWidth: true
+
+            });
+        })
+    </script>
+</body>
+</html>

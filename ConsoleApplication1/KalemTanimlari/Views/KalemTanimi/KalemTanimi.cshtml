@@ -1,0 +1,536 @@
+﻿@model KalemTanimlari.Models.kalemmodel
+@{
+    ViewBag.Title = "KalemTanimi";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <h2 data-i18n="">Kalem Tanımları</h2>
+    <ol class="breadcrumb">
+        <li class="active">
+            <a data-i18n="mainpage.mainpage">Ana Sayfa</a>
+        </li>
+
+        <li data-i18n="nav">
+            Kalem Tanımları
+        </li>
+        <li data-i18n="nav" class="active">
+            <strong>Kalem Tanımları</strong>
+        </li>
+    </ol>
+</div>
+<div id="status"></div>
+
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox ibox-shadow">
+                <div class="ibox-title">
+                    <h5>Kalem Tanımları</h5>
+                    <div class="ibox-tools">
+                        <a class="fullscreen-link">
+                            <i class="fa fa-expand"></i>
+                        </a>
+                    </div>
+                </div>
+                <div id="cplist" class="ibox-content">
+
+                    <div class="table-responsive">
+                        <table id="dataTableItem" class="table table-striped table-bordered table-hover display" cellspacing="0" width="100%"></table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="formModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" id="formDialog">
+        <form id="KalemForm" action="#" class="wizard-big">
+            <div class="modal-content ibox-content">
+
+                <div class="modal-header" id="ModalHeader">
+                    <button type="button"  class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Kapat</span></button>
+                    <h4 class="modal-title" id="TitleHeader">Kalem Tanımları</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="ibox">
+                                <div class="ibox-title">
+                                    <a class="collapse-link">
+                                        <div class="ibox-tools">
+                                            <h5>Genel Bilgiler</h5>
+                                            <i class="fa fa-chevron-down"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <input type="text" id="ItemId" name="ItemId" hidden/>
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.ItemName)
+                                                @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                                @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                                            </div>  @*ItemName*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.ItemCode)
+                                                @Html.EditorFor(model => model.ItemCode, new { htmlAttributes = new { @class = "form-control", @maxlength = "20" } })
+                                                @Html.ValidationMessageFor(model => model.ItemCode, "", new { @class = "text-danger" })
+                                            </div>  @*ItemCode*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.ItemSequence)
+                                                @Html.EditorFor(model => model.ItemSequence, new { htmlAttributes = new { @class = "form-control", @maxlength = "5" } })
+                                                @Html.ValidationMessageFor(model => model.ItemSequence, "", new { @class = "text-danger" })
+                                            </div> @*ItemSequence*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.ItemCurrency)
+                                                @Html.EditorFor(model => model.ItemCurrency, new { htmlAttributes = new { @class = "form-control", @maxlength = "5" } })
+                                                @Html.ValidationMessageFor(model => model.ItemCurrency, "", new { @class = "text-danger" })
+                                            </div> @*ItemCurrency*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.CurrencyRate)
+                                                @Html.EditorFor(model => model.CurrencyRate, new { htmlAttributes = new { @class = "form-control", @maxlength = "40" } })
+                                                @Html.ValidationMessageFor(model => model.CurrencyRate, "", new { @class = "text-danger" })
+                                            </div> @*CurrencyRate*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.CopyFormula)
+                                                @Html.EditorFor(model => model.CopyFormula, new { htmlAttributes = new { @class = "form-control", @maxlength = "60" } })
+                                                @Html.ValidationMessageFor(model => model.CopyFormula, "", new { @class = "text-danger" })
+                                            </div> @*CopyFormula*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.InvoiceItemDisclosures)
+                                                @Html.EditorFor(model => model.InvoiceItemDisclosures, new { htmlAttributes = new { @class = "form-control", @maxlength = "200" } })
+                                                @Html.ValidationMessageFor(model => model.InvoiceItemDisclosures, "", new { @class = "text-danger" })
+                                            </div> @*InvoiceItemDisclosures*@
+
+
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.RevenueAccount)
+                                                @Html.EditorFor(model => model.RevenueAccount, new { htmlAttributes = new { @class = "form-control", @maxlength = "20" } })
+                                                @Html.ValidationMessageFor(model => model.RevenueAccount, "", new { @class = "text-danger" })
+                                            </div>      @*RevenueAccount*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.CostAccount)
+                                                @Html.EditorFor(model => model.CostAccount, new { htmlAttributes = new { @class = "form-control", @maxlength = "20" } })
+                                                @Html.ValidationMessageFor(model => model.CostAccount, "", new { @class = "text-danger" })
+                                            </div>      @*CostAccount*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.ExpenceCenterAccount)
+                                                @Html.EditorFor(model => model.ExpenceCenterAccount, new { htmlAttributes = new { @class = "form-control", @maxlength = "20" } })
+                                                @Html.ValidationMessageFor(model => model.ExpenceCenterAccount, "", new { @class = "text-danger" })
+                                            </div>      @*ExpenceCenterAccount*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.RevenueVatAccount)
+                                                @Html.EditorFor(model => model.RevenueVatAccount, new { htmlAttributes = new { @class = "form-control", @maxlength = "20" } })
+                                                @Html.ValidationMessageFor(model => model.RevenueVatAccount, "", new { @class = "text-danger" })
+                                            </div>      @*RevenueVatAccount*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.CostVatAccount)
+                                                @Html.EditorFor(model => model.CostVatAccount, new { htmlAttributes = new { @class = "form-control", @maxlength = "20" } })
+                                                @Html.ValidationMessageFor(model => model.CostVatAccount, "", new { @class = "text-danger" })
+                                            </div>      @*CostVatAccount*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.RevenueRateOfVat)
+                                                @Html.EditorFor(model => model.RevenueRateOfVat, new { htmlAttributes = new { @class = "form-control", @maxlength = "20" } })
+                                                @Html.ValidationMessageFor(model => model.RevenueRateOfVat, "", new { @class = "text-danger" })
+                                            </div>      @*RevenueRateOfVat*@
+
+                                            <div class="form-group ">
+                                                @Html.LabelFor(model => model.CostRateOfVat)
+                                                @Html.EditorFor(model => model.CostRateOfVat, new { htmlAttributes = new { @class = "form-control", @maxlength = "20" } })
+                                                @Html.ValidationMessageFor(model => model.CostRateOfVat, "", new { @class = "text-danger" })
+                                            </div>      @*CostRateOfVat*@
+
+                                        </div>
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.RegulatoryArea, new { @class = "form-control  i-checks" })
+                                                @Html.LabelFor(model => model.RegulatoryArea)
+                                                @Html.ValidationMessageFor(model => model.RegulatoryArea, "", new { @class = "text-danger" })
+                                            </div>       @*RegulatoryArea*@
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.GrossProfitAndLoss, new { @class = "form-control  i-checks" })
+                                                @Html.LabelFor(model => model.GrossProfitAndLoss)
+                                                @Html.ValidationMessageFor(model => model.GrossProfitAndLoss, "", new { @class = "text-danger" })
+                                            </div>       @*GrossProfitAndLoss*@
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.CutCreditAdvice, new { @class = "form-control  i-checks" })
+                                                @Html.LabelFor(model => model.CutCreditAdvice)
+                                                @Html.ValidationMessageFor(model => model.CutCreditAdvice, "", new { @class = "text-danger" })
+                                            </div>       @*CutCreditAdvice*@
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.ExpeditionaryRevenueCostItem, new { @class = "form-control  i-checks" })
+                                                @Html.LabelFor(model => model.ExpeditionaryRevenueCostItem)
+                                                @Html.ValidationMessageFor(model => model.ExpeditionaryRevenueCostItem, "", new { @class = "text-danger" })
+                                            </div>       @*ExpeditionaryRevenueCostItem*@
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.InternalAbstractAccount, new { @class = "form-control  i-checks" })
+                                                @Html.LabelFor(model => model.InternalAbstractAccount)
+                                                @Html.ValidationMessageFor(model => model.InternalAbstractAccount, "", new { @class = "text-danger" })
+                                            </div>       @*InternalAbstractAccount*@
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.RevenueItem, new { @class = "form-control  i-checks" })
+                                                @Html.LabelFor(model => model.RevenueItem)
+                                                @Html.ValidationMessageFor(model => model.RevenueItem, "", new { @class = "text-danger" })
+                                            </div>       @*RevenueItem*@
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.CostItem, new { @class = "form-control  i-checks" })
+                                                @Html.LabelFor(model => model.CostItem)
+                                                @Html.ValidationMessageFor(model => model.CostItem, "", new { @class = "text-danger" })
+                                            </div>       @*CostItem*@
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(model => model.Modules, new { @class = "form-control  i-checks" })
+                                                @Html.LabelFor(model => model.Modules)
+                                                @Html.ValidationMessageFor(model => model.Modules, "", new { @class = "text-danger" })
+                                            </div>       @*Modules*@
+
+
+
+
+
+
+                                            <div class="form-group">
+                                            @Html.LabelFor(model=>model.ItemType)
+                                                @Html.DropDownList("ItemType", null, "", new { @class = "form-control required selectNoSearch", data_placeholder = "Seçiniz...", title = HttpUtility.HtmlDecode(Html.DisplayFor(model => model.ItemType).ToString()) })
+                                            </div>   @*ItemType*@
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ReportLot)
+                                                @Html.DropDownList("ReportLot", null, "", new { @class = "form-control required selectNoSearch",  data_placeholder = "Seçiniz...", title = HttpUtility.HtmlDecode(Html.DisplayFor(model => model.ReportLot).ToString()) })
+                                            </div>   @*ReportLot*@
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ApportionProcedure)
+                                                @Html.DropDownList("ApportionProcedure", null, "", new { @class = "form-control required selectNoSearch",  data_placeholder = "Seçiniz...", title = HttpUtility.HtmlDecode(Html.DisplayFor(model => model.ApportionProcedure).ToString()) })
+                                            </div>   @*ApportionProcedure*@
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.RelatedCompany)
+                                                @Html.DropDownList("RelatedCompany", null, "", new { @class = "form-control required selectNoSearch", tabindex = "2", data_placeholder = "Seçiniz...", title = HttpUtility.HtmlDecode(Html.DisplayFor(model => model.RelatedCompany).ToString()) })
+                                            </div>   @*RelatedCompany*@
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+                    <button id="closebtn" type="button" onclick="closeForm()" class="ladda-button-close btn btn-white cfclose nodesible">Kapat</button>
+
+                    <button id="submitBtn"  type="submit" onclick="Kaydet()" class="ladda-button ladda-button-submit btn btn-primary nodesible" data-style="zoom-in">Kaydet</button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/plugins/laddajqueryspin")
+    @Scripts.Render("~/plugins/ladda")
+    @Scripts.Render("~/plugins/laddajquery")
+
+    @Scripts.Render("~/plugins/sweetAlert")
+
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/validate")
+    @Scripts.Render("~/plugins/validatemessages_tr")
+    @Scripts.Render("~/geocomplete")
+    @Scripts.Render("~/bundles/typeahead.bundle")
+    @Scripts.Render("~/bundles/typeahead.jquery")
+
+    @Scripts.Render("~/plugins/dropZone")
+
+    @*@Scripts.Render("~/plugins/jqueryui")*@
+    @Scripts.Render("~/plugins/dataTables")
+
+    <script type="text/javascript">       
+
+        var id = 1;
+        var dataTableItem;
+
+
+        $(document).ready(function () {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+            DataTableItem();
+
+
+            var table = $('#dataTableItem').DataTable();
+
+            // Event listener to the two range filtering inputs to redraw on input
+            $('#min, #max').keyup(function () {
+                table.draw();
+            });
+       
+        });
+
+        function Kaydet() {
+
+
+            var Id = $('#ItemId').val();
+            if (Id!="") {
+                Edit(Id);
+            }
+            else {
+                var postType = "POST";
+
+                var data = $("#KalemForm").serializeArray();
+
+                $.getJSON({
+                    type: postType,
+                    url: "/api/KalemApi/Kayit/",
+                    data: data,
+                    success: function (message) {
+                        if (message == "OK") {
+                            swal("İşlem Başarılı!", "Kayıtınız Başarıyla Gerçekleştirildi..", "success");
+                            $("#formModal").modal('hide');
+                            dataTableItem.ajax.reload();
+
+
+                        }
+                    }
+
+                })
+            }
+          
+        }
+        function Edit(id) {
+
+
+          
+                var postType = "POST";
+
+                var data = $("#KalemForm").serializeArray();
+
+                $.getJSON({
+                    type: postType,
+                    url: "/api/KalemApi/Duzenle/"+id,
+                    data: data,
+                    success: function (message) {
+                        if (message == "OK") {
+                            swal("İşlem Başarılı!", "Kayıtınız Başarıyla Gerçekleştirildi..", "success");
+                            $("#formModal").modal('hide');
+                            dataTableItem.ajax.reload();
+
+
+                        }
+                    }
+
+                })
+            }
+        function openNewRecord() {
+                     
+            $('#formModal').modal('show');
+        }
+        function closeForm() {
+         
+            $('#formModal').modal('hide');
+            //document.getElementById("formModal").reset();
+
+        }
+        function Duzenle(id) {
+            document.getElementById('TitleHeader').innerHTML = "Kalem Güncelleme Ekranı";
+         
+            $.getJSON("/api/KalemApi/Get/"+id ).done(function (data){
+               
+                $("#ItemId").val(data.ItemId);
+                $("#ApportionProcedure").val(data.ApportionProcedure).trigger('change');
+                $("#CopyFormula").val(data.CopyFormula);
+                $("#CostAccount").val(data.CostAccount);
+                $("#CostItem").prop("checked", data.CostItem);
+                $("#CostRateOfVat").val(data.CostRateOfVat);
+                $("#CostVatAccount").val(data.CostVatAccount);
+                $("#CurrencyRate").val(data.CurrencyRate);
+                $("#CutCreditAdvice").prop("checked", data.CutCreditAdvice);
+                $("#ExpeditionaryRevenueCostItem").prop("checked", data.ExpeditionaryRevenueCostItem);
+                $("#ExpenceCenterAccount").val(data.ExpenceCenterAccount);
+                $("#GrossProfitAndLoss").prop("checked", data.GrossProfitAndLoss);
+                $("#InternalAbstractAccount").prop("checked", data.InternalAbstractAccount);
+                $("#InvoiceItemDisclosures").val(data.InvoiceItemDisclosures);
+                $("#ItemCode").val(data.ItemCode);
+                $("#ItemCurrency").val(data.ItemCurrency);
+                $("#ItemId").val(data.ItemId);
+                $("#ItemName").val(data.ItemName);
+                $("#ItemSequence").val(data.ItemSequence);
+                $("#ItemType").val(data.ItemType).trigger('change');
+                $("#Modules").prop("checked", data.Modules);
+                $("#RegulatoryArea").prop("checked", data.RegulatoryArea);
+                $("#RelatedCompany").val(data.RelatedCompany);
+                $("#ReportLot").val(data.ReportLot);
+                $("#RevenueAccount").val(data.RevenueAccount);
+                $("#RevenueItem").prop("checked", data.RevenueItem);
+                $("#RevenueRateOfVat").val(data.RevenueRateOfVat);
+                $("#RevenueVatAccount").val(data.RevenueVatAccount);
+                $('#formModal').modal('show');
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+
+            } )
+      
+        }
+        function Delete(id) {
+            swal({
+                title: "Eminmisiniz?",
+                text: "Kod Grubu Kalıcı Olarak Silinecek!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Evet, sil!",
+                cancelButtonText: "Hayır",
+                closeOnConfirm: false
+            }, function () {
+
+                $.ajax({
+                    type: "Delete",
+                    url: "/api/KalemApi/DELETE/" + id,
+                    success: function (result) {
+                        if (result == "OK") {
+                            swal("Silindi!", "Kod Grubu Silindi.", "success");
+
+                            dataTableItem.ajax.reload();
+                        }
+                        else {
+                            swal("Hata!", result, "warning");
+                        }
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + " > " + thrownError);
+                    }
+                });
+
+            });
+        }
+
+        function DataTableItem() {
+
+
+            var colms = [
+                {
+                    "mRender": function (data, type, row) {
+
+
+                        return '<button data-toggle="tooltip" id="btnEditItem" data-placement="top" title="Düzenle" onclick="Duzenle('+row.ItemId+')"  class="btn btn-info btn-xs " type="button"><i class="fa fa-pencil-square-o"></i></button> <button data-toggle="tooltip" data-placement="top" class="btn btn-danger btn-xs" type="button" title="Sil" onclick="Delete(' + row.ItemId + ');"><i class="fa fa-trash-o"></i></button>';
+                    },
+
+                },
+                { data: "ItemName", "mDataProp": "ItemName", "title": "Kalem Adı", value: "ItemName" },
+                { data: "ItemCode", "mDataProp": "ItemCode", "title": "Kalem Kodu", value: "ItemCode" },
+                { data: "RelatedCompany", "mDataProp": "RelatedCompany", "title": "İlgili Firma", value: "RelatedCompany" },
+                { data: "ItemSequence", "mDataProp": "ItemSequence", "title": "Kalem Sırası", value: "ItemSequence" },
+                { data: "ItemCurrency", "mDataProp": "ItemCurrency", "title": "Kalem Dövizi", value: "ItemCurrency" },
+                { data: "CurrencyRate", "mDataProp": "CurrencyRate", "title": "Döviz Kur Bilgisi", value: "CurrencyRate", },
+                { data: "ItemType", "mDataProp": "ItemType", "title": "Kalem Türü ", value: "ItemType" },
+                { data: "ReportLot", "mDataProp": "ReportLot", "title": "Rapor Grubu", value: "ReportLot" },
+                { data: "ApportionProcedure", "mDataProp": "ApportionProcedure", "title": "Paylaştırma Kriteri", value: "ApportionProcedure", },
+                { data: "CopyFormula", "mDataProp": "CopyFormula", "title": "Kopyalama Formülü", value: "CopyFormula" },
+                { data: "RegulatoryArea", "mDataProp": "RegulatoryArea", "title": "Zorunlu Seçeneği", value: "RegulatoryArea" },
+                { data: "GrossProfitAndLoss", "mDataProp": "GrossProfitAndLoss", "title": "Brüt Kar/zarar", value: "GrossProfitAndLoss", },
+                { data: "CutCreditAdvice", "mDataProp": "CutCreditAdvice", "title": "İndirim/Alacak Dekontu", value: "CutCreditAdvice" },
+                { data: "ExpeditionaryRevenueCostItem", "mDataProp": "ExpeditionaryRevenueCostItem", "title": "Sefer İlişkin Gelir/Gider", value: "ExpeditionaryRevenueCostItem" },
+                { data: "InternalAbstractAccount", "mDataProp": "InternalAbstractAccount", "title": "İç Dekont", value: "InternalAbstractAccount", },
+                { data: "InvoiceItemDisclosures", "mDataProp": "InvoiceItemDisclosures", "title": "Fatura Kalem Açıklamaları", value: "InvoiceItemDisclosures" },
+
+
+                { data: "RevenueItem", "mDataProp": "RevenueItem", "title": "Gelir Kalemi ", value: "RevenueItem" },
+                { data: "CostItem", "mDataProp": "CostItem", "title": "Gider Kalemi", value: "CostItem" },
+                { data: "RevenueAccount", "mDataProp": "RevenueAccount", "title": "Gelir Muhasebe Hesabı", value: "RevenueAccount" },
+                { data: "CostAccount", "mDataProp": "CostAccount", "title": "Gider Muhasebe Hesabı", value: "CostAccount" },
+                { data: "ExpenceCenterAccount", "mDataProp": "ExpenceCenterAccount", "title": "Gelir Masraf Yeri hesabı", value: "ExpenceCenterAccount" },
+                { data: "RevenueVatAccount", "mDataProp": "RevenueVatAccount", "title": "Gelir KDV Hesabı", value: "RevenueVatAccount" },
+                { data: "CostVatAccount", "mDataProp": "CostVatAccount", "title": "Gider KDV Hesabı", value: "CostVatAccount" },
+                { data: "RevenueRateOfVat", "mDataProp": "RevenueRateOfVat", "title": "Gelir KDV Oranı", value: "RevenueRateOfVat" },
+                { data: "CostRateOfVat", "mDataProp": "CostRateOfVat", "title": "Gider KDV Oranı", value: "CostRateOfVat" },
+                { data: "Modules", "mDataProp": "Modules", "title": "Kullanılacak Uygulamalar", value: "Modules" }
+            ];
+            // YÜKLENİYOR
+            dataTableItem = $('#dataTableItem').DataTable({
+                select: true,
+                scrollX: true,
+                scrollCollapse: false,
+                scrollY: false,
+                "paging": false,
+                "ordering": false,
+                "info": false,
+
+                "bLengthChange": false,
+                "bFilter": true,
+                "bSort": true,
+                "sAjaxDataProp": "aaData",
+                "bJQueryUI": true,
+                "bProcessing": true,
+                "bServerSide": true,
+                //pageLength: 5,
+                dom: '<"html5buttons"B>lTfgitp',
+                language: {
+                    "url": "/locales/DataTable.tr.json"
+                },
+                ajax: {
+                    type: "POST",
+                    url: "/api/KalemApi/veriEkle/" ,
+                    beforeSend: function () {
+                        $('.ibox').children('#gclist').toggleClass('sk-loading');
+                    },
+                    complete: function () {
+                        $('.ibox').children('#gclist').toggleClass('sk-loading');
+                    }
+                },
+                buttons: [
+                    {
+                        text: '<i class="fa fa-plus"></i>&nbsp;&nbsp;Yeni Kayıt', titleAttr: 'Ekle',
+                        action: function (e, dt, node, config) {
+                            openNewRecord();
+                        }
+                    },
+           
+                ],
+                "aoColumns": colms,
+                "aoColumnDefs": colms
+
+            });
+        }
+       
+        //$(document).on("change", ".selectNoSearch", function () {
+        //    if (!$.isEmptyObject(validobj.submitted)) {
+        //        validobj.form();
+        //    }
+        //});
+    </script>
+}
+

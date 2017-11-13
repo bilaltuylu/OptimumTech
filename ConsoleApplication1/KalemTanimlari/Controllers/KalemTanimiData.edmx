@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OptimumTechModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="C_SYS_ItemInformation">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="60" />
+          <Property Name="ItemCode" Type="varchar" MaxLength="20" />
+          <Property Name="RelatedCompany" Type="varchar" MaxLength="60" />
+          <Property Name="ItemSequence" Type="int" />
+          <Property Name="ItemCurrency" Type="varchar" MaxLength="5" />
+          <Property Name="CurrencyRate" Type="varchar" MaxLength="40" />
+          <Property Name="ItemType" Type="varchar" MaxLength="40" />
+          <Property Name="ReportLot" Type="varchar" MaxLength="60" />
+          <Property Name="ApportionProcedure" Type="varchar" MaxLength="20" />
+          <Property Name="CopyFormula" Type="varchar" MaxLength="60" />
+          <Property Name="RegulatoryArea" Type="bit" />
+          <Property Name="GrossProfitAndLoss" Type="bit" />
+          <Property Name="CutCreditAdvice" Type="bit" />
+          <Property Name="ExpeditionaryRevenueCostItem" Type="bit" />
+          <Property Name="InternalAbstractAccount" Type="bit" />
+          <Property Name="InvoiceItemDisclosures" Type="varchar" MaxLength="200" />
+          <Property Name="RevenueItem" Type="bit" />
+          <Property Name="CostItem" Type="bit" />
+          <Property Name="RevenueAccount" Type="varchar" MaxLength="20" />
+          <Property Name="CostAccount" Type="varchar" MaxLength="20" />
+          <Property Name="ExpenceCenterAccount" Type="varchar" MaxLength="20" />
+          <Property Name="RevenueVatAccount" Type="varchar" MaxLength="20" />
+          <Property Name="CostVatAccount" Type="varchar" MaxLength="20" />
+          <Property Name="RevenueRateOfVat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CostRateOfVat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Modules" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="OptimumTechModelStoreContainer">
+          <EntitySet Name="C_SYS_ItemInformation" EntityType="Self.C_SYS_ItemInformation" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OptimumTechModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C_SYS_ItemInformation">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ItemCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RelatedCompany" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ItemSequence" Type="Int32" />
+          <Property Name="ItemCurrency" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="CurrencyRate" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ItemType" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ReportLot" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="ApportionProcedure" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CopyFormula" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="RegulatoryArea" Type="Boolean" />
+          <Property Name="GrossProfitAndLoss" Type="Boolean" />
+          <Property Name="CutCreditAdvice" Type="Boolean" />
+          <Property Name="ExpeditionaryRevenueCostItem" Type="Boolean" />
+          <Property Name="InternalAbstractAccount" Type="Boolean" />
+          <Property Name="InvoiceItemDisclosures" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RevenueItem" Type="Boolean" />
+          <Property Name="CostItem" Type="Boolean" />
+          <Property Name="RevenueAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CostAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ExpenceCenterAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RevenueVatAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CostVatAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RevenueRateOfVat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CostRateOfVat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Modules" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="OptimumTechEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C_SYS_ItemInformation" EntityType="Self.C_SYS_ItemInformation" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OptimumTechModelStoreContainer" CdmEntityContainer="OptimumTechEntities1">
+          <EntitySetMapping Name="C_SYS_ItemInformation">
+            <EntityTypeMapping TypeName="OptimumTechModel.C_SYS_ItemInformation">
+              <MappingFragment StoreEntitySet="C_SYS_ItemInformation">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="RelatedCompany" ColumnName="RelatedCompany" />
+                <ScalarProperty Name="ItemSequence" ColumnName="ItemSequence" />
+                <ScalarProperty Name="ItemCurrency" ColumnName="ItemCurrency" />
+                <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="ReportLot" ColumnName="ReportLot" />
+                <ScalarProperty Name="ApportionProcedure" ColumnName="ApportionProcedure" />
+                <ScalarProperty Name="CopyFormula" ColumnName="CopyFormula" />
+                <ScalarProperty Name="RegulatoryArea" ColumnName="RegulatoryArea" />
+                <ScalarProperty Name="GrossProfitAndLoss" ColumnName="GrossProfitAndLoss" />
+                <ScalarProperty Name="CutCreditAdvice" ColumnName="CutCreditAdvice" />
+                <ScalarProperty Name="ExpeditionaryRevenueCostItem" ColumnName="ExpeditionaryRevenueCostItem" />
+                <ScalarProperty Name="InternalAbstractAccount" ColumnName="InternalAbstractAccount" />
+                <ScalarProperty Name="InvoiceItemDisclosures" ColumnName="InvoiceItemDisclosures" />
+                <ScalarProperty Name="RevenueItem" ColumnName="RevenueItem" />
+                <ScalarProperty Name="CostItem" ColumnName="CostItem" />
+                <ScalarProperty Name="RevenueAccount" ColumnName="RevenueAccount" />
+                <ScalarProperty Name="CostAccount" ColumnName="CostAccount" />
+                <ScalarProperty Name="ExpenceCenterAccount" ColumnName="ExpenceCenterAccount" />
+                <ScalarProperty Name="RevenueVatAccount" ColumnName="RevenueVatAccount" />
+                <ScalarProperty Name="CostVatAccount" ColumnName="CostVatAccount" />
+                <ScalarProperty Name="RevenueRateOfVat" ColumnName="RevenueRateOfVat" />
+                <ScalarProperty Name="CostRateOfVat" ColumnName="CostRateOfVat" />
+                <ScalarProperty Name="Modules" ColumnName="Modules" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
